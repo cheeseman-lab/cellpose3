@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "cellpose3_backend"
+backend-path = ["backend"]
+
+[project]
+name = "cellpose3"
+version = "3.1.0"
+description = "Cellpose 3.1.0, unmodified except for its import name, so it can be installed next to Cellpose 4"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+authors = [
+  { name = "Carsen Stringer" },
+  { name = "Marius Pachitariu" },
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy>=1.20.0,<2.1",
+  "scipy",
+  "natsort",
+  "tifffile",
+  "tqdm",
+  "numba>=0.53.0",
+  "llvmlite",
+  "torch>=1.6",
+  "opencv-python-headless",
+  "fastremap",
+  "imagecodecs",
+  "roifile",
+]
+
+[project.optional-dependencies]
+gui = ["pyqtgraph>=0.11.0rc0", "pyqt6", "pyqt6.sip", "qtpy", "superqt"]
+distributed = ["dask", "dask-image", "scikit-learn"]
+bioimageio = ["bioimageio.core"]
+test = ["pytest", "cellpose==4.0.4"]
+
+[project.scripts]
+cellpose3 = "cellpose3.__main__:main"
+
+[project.urls]
+Upstream = "https://github.com/MouseLand/cellpose"
+Recipe = "https://github.com/cheeseman-lab/cellpose3"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cellpose3 = ["gui/*.html", "logo/*"]
